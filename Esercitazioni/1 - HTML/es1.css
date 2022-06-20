@@ -1,0 +1,19 @@
+body {
+    font-family: "Verdana, Geneva, Tahoma, sans-serif";
+}    
+h1, h2 {
+    font-style: italic;
+    background-color: lightgray;
+    text-align: right;
+}
+
+.fragment, .quote {
+    background-color: yellow;
+}
+
+.commodo {
+    background-color: red;
+    letter-spacing: 20px;
+    font-size: 125%;
+    font-weight: bold;
+}

@@ -1,0 +1,84 @@
+swagger: "2.0"
+info:
+  title: "API Ristorante"
+  version: "1.0.0"
+  description: "API Ristorante"
+  
+host: "castenaso.watami.it"
+basePath: "/v1"
+
+paths:
+  /menu/:
+    get:
+      description: "Ottieni l'elenco di tutti i menu"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            type:
+              array
+            items:
+              $ref: "#/definitions/Menu"
+        400:
+          description: "Error"
+
+  /menu/{idMenu}:
+    get:
+      description: "Prendi un piatto dal menu"
+      parameters:
+        - name: idMenu
+          in: path
+          type: integer
+          format: int64
+          required: true
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/Menu"
+        400:
+          description: "Error"
+
+    post:
+      description: "Aggiungo un piatto al menu"
+      parameters:
+        - name: idMenu
+          in: path
+          type: integer
+          format: int64
+          required: true
+        - name: nuovoPiatto
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/Piatto"
+      responses:
+        200:
+          description: "Ok"
+        400:
+          description: "Error"
+
+schemes:
+- "http"
+- "https"
+
+definitions:
+  Menu:
+    type: object
+    required:
+      - identificativo
+      - descrizione
+      - listaPiatti
+    properties:
+      identificativo:
+        type: integer
+        format: int64
+      descrizione:
+        type: string
+      listaPiatti:
+        type: array
+        items:
+          $ref: "#/definitions/Piatto"
+
+  Piatto:
+    type: string

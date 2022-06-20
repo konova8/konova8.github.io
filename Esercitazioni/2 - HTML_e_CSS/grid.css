@@ -1,0 +1,60 @@
+#main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: "sx a b c d dx";
+}
+
+#blanksx {
+    grid-area: sx;
+}
+
+#blankdx {
+    grid-area: dx;
+}
+
+#areaA {
+    grid-area: a;
+}
+
+#areaB {
+    grid-area: b;
+}
+
+#areaC {
+    grid-area: c;
+}
+
+#areaD {
+    grid-area: d;
+}
+
+nav {
+    background-color: lightgray;
+}
+
+nav p {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+h1 {
+    background-color: lightgray;
+    padding: 100px 20px 100px 10px
+}
+
+@media (max-width:999px) {
+    #main-grid {
+        display: grid;
+        grid-template-areas: "sx a b dx" "sx c d dx";
+        grid-template-columns: 1fr 2fr 2fr 1fr;
+    }
+}
+
+@media (max-width:499px) {
+    #main-grid {
+        display: grid;
+        grid-template-areas: "sx a dx" "sx b dx" "sx c dx" "sx d dx";
+        grid-template-columns: 1fr;
+        padding: 0px 5%;
+    }
+}

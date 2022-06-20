@@ -1,0 +1,100 @@
+Turtle di "Umberto Eco e' l'autore de Il Nome della Rosa"
+
+@prefix anobii: <http://www.anobii.com/books> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix twitter: <https://twitter.com/> .
+@prefix db: <http://purl.or.ontology/bibo/Book> .
+
+twitter:umberto_eco
+    foaf:name "Umberto Eco" ;
+    rdf:type foaf:person ;
+    foaf:made anobii:il_nome_della_rosa .
+
+anobii:il_nome_della_rosa
+    rdf:type foaf:book ;
+    dc:title "Il Nome della Rosa" ;
+    a db:book
+
+----------------------------------------------------------------
+
+JSON-LD di "Il video volevo un gatto nero, e' stato pubblicato il 9 maggio 2012 dallo zecchino d'oro"
+
+{
+    "@context": {
+        "dcterms": "http://purl.org/dc/terms/" ,
+        “video": "http://my-wonder-site/ontology/video/”,
+        “xsd”: "http://www.w3.org/2001/XMLSchema#”
+    },
+    
+    "@id": "http://my-wonder-site/volevo_un_gatto_nero" ,
+    "@type": "http://purl.org/ontology/mpeg7/Video" ,
+
+    "dcterms:created" {
+        "@type": "xsd:date",
+        "@value": "2012-05-09"
+    }
+
+
+
+    "dcterms:title": {
+    “@type”: “xsd:string”,
+    “@value”: “Volevo un gatto nero”
+    },
+    
+    "video:madeBy": "Zecchino d'Oro"
+}
+
+-----------------------------------------
+
+Esercizio A
+    1 parte
+
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+http://example.org/people/Bob
+    rdf:type foaf:Person ;
+    foaf:name "Bob"^^xds:string ;
+    foaf:knows _x .
+
+_x
+    rdf:type foaf:Person ;
+    foaf:name "Linda"^^xds:string .
+
+---------------------------------------------
+
+Esercizio B
+    1 parte
+
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix fam: <http://xmlns.com/fam/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+http://example.org/people/Pinco
+    rdf:type foaf:Person ;
+    foaf:name "Pinco"^^xds:string ;
+    foaf:friend http://example.org/people/Pallo .
+
+http://example.org/people/Pallo
+    rdf:type foaf:Person ;
+    foaf:name "Pallo"^^xds:string ;
+    foaf:friend http://example.org/people/Pallo ;
+    foaf:friend _f1 ;
+    foaf:friend _f2 ;
+    ...
+    foaf:friend _f49 ;
+    foaf:friend _f50 .
+
+http://example.org/people/Pallino
+    rdf:type foaf:Person ;
+    foaf:name "Pallino"^^xds:string ;
+    fam:father http://example.org/people/Pallo ;
+    fam:father _x .
+
+_x
+    rdf:type foaf:Person ;
+    fam:father http://example.org/people/Pinco .
+
+_f1 _f2 ... _f49 _f50
+    rdf:type foaf:Person .

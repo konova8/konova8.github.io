@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <form>
+        <label>Nome:
+            <input type="text">
+        </label>
+        <label for="lastname">Cognome:</label>
+        <input id="lastname" type="text" required aria-describedby="lastname-help">
+        <p id="lastname-help">Questa è la descrizione aggiuntiva di un campo
+            obbligatorio, da utilizzare per un testo d'aiuto all'utente.</p>
+        <label for="genere">Genere:</label>
+        <select name="genere" id="genere">
+            <option value="NA">-- Scegliere un opzione --</option>
+            <option value="m">Maschile</option>
+            <option value="f">Femminile</option>
+            <option value="other">Altro, o preferisco non dirlo</option>
+        </select>
+        <input type="text" name="subject" title="Oggetto del messaggio" placeholder="Inserisci l'oggetto del messaggio">
+        <label for="txt">Testo del messaggio:</label>
+        <textarea id="text" cols="30" rows="10" required></textarea>
+        <input type="checkbox" id="check">
+        <label for="check">Accetto i termini di servizio</label>
+        <button type="submit">Invia modulo!</button>
+        <input type="reset" value="Pulisci i campi">
+    </form>
+</body>
+
+</html>
