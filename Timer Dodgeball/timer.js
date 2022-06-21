@@ -63,8 +63,4 @@ function resetTimer() {
 
     clearInterval(x);
     started = false;
-};
-
-subPointS1() {
-    let n = document.getElementById("pointS1").innerHTML;
 }
