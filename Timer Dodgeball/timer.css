@@ -12,24 +12,13 @@ body > * {
     background-color: lightgray;
 }
 
-#rightContainer {
-    background-color: blueviolet;
-    text-align: center;
-    font-size: 500%;
-    font-weight: bolder;
-}
-
-#buttonsContainer > * {
-    height: 20%;
-}
-
 button {
     height: 100%;
 }
 
-.timerContainer {
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#rightContainer {
+    background-color: blueviolet;
+    text-align: center;
+    font-size: 1000%;
+    font-weight: bolder;
 }

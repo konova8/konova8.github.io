@@ -8,41 +8,56 @@
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="timer.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="timer.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Dodgeball Timer</title>
 </head>
 
 <body class="container-fluid">
     <div class="row">
 
-        <div id="buttonsContainer" class="col-1 container-fluid">
-            <div class="row"><button class="col-12" onclick="startTimer()">Play</button></div>
+        <div id="buttonsContainer" class="col-1 container-fluid min-vh-100">
+            <div class="row"><button class="col-12" onclick="startBoth()">Play</button></div>
+            <div class="row"><button class="col-12" onclick="startTime()">Play Time</button></div>
+            <div class="row"><button class="col-12" onclick="startSet()">Play Set</button></div>
             <div class="row"><button class="col-12" onclick="pauseTimer()">Pause</button></div>
-            <div class="row"><button class="col-12" onclick="resetTimer()">Reset</button></div>
-            <div class="row">
-                <button class="col-6" onclick="subPointS1()">S1--</button>
-                <button class="col-6" onclick="addPointS1()">S1++</button>
-            </div>
-            <div class="row">
-                <button class="col-6" onclick="subPointS2()">S2--</button>
-                <button class="col-6" onclick="addPointS2()">S2++</button>
-            </div>
+            <div class="row"><button class="col-12" onclick="resetAll()">Reset all</button></div>
+
+            <div class="row"><button class="col-12" onclick="changeTimeRemain()">Time</button></div>
+            <div class="row"><button class="col-12" onclick="changeSetRemain()">Set</button></div>
+
+            <div class="row"><button class="col-12" onclick="subPointS1()">S1--</button></div>
+            <div class="row"><button class="col-12" onclick="addPointS1()">S1++</button></div>
+            <div class="row"><button class="col-12" onclick="subPointS2()">S2--</button></div>
+            <div class="row"><button class="col-12" onclick="addPointS2()">S2++</button></div>
         </div>
 
-        <div id="rightContainer" class="col-11">
-            <div id="timeTimerContainer" class="row">
-                <p class="col-12"><span id="timeMinutes">15</span>:<span id="timeSeconds">00</span></p>
+        <div id="rightContainer" class="col-11 min-vh-100 d-flex flex-column">
+            <div id="timeTimerContainer" class="row flex-grow-1">
+                <div class="col-12">
+                    <p><span id="timeMinutes">15</span>:<span id="timeSeconds">00</span></p>
+                </div>
             </div>
 
-            <div id="setTimerContainer" class="row">
-                <p class="col-12"><span id="setMinutes">03</span>:<span id="setSeconds">00</span></p>
+            <div id="setTimerContainer" class="row flex-grow-1">
+                <div class="col-12">
+                    <p><span id="setMinutes">03</span>:<span id="setSeconds">00</span></p>
+                </div>
             </div>
 
-            <div id="pointsContainer" class="row">
-                <div class="col-6"><p id="pointS1">00</p></div>
-                <div class="col-6"><p id="pointS2">00</p></div>
+            <div id="pointsContainer" class="row h-25">
+                <div class="col-6">
+                    <div id="pointS1">
+                        <p>00</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div id="pointS2">
+                        <p>00</p>
+                    </div>
+                </div>
             </div>
-            
-            
+
+
         </div>
     </div>
 
