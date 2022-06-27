@@ -61,7 +61,7 @@ function startTime() {
 
 function startSet() {
     remainSet = parseInt(document.getElementById("setMinutes").innerHTML) * 60 * 1000 + parseInt(document.getElementById("setSeconds").innerHTML) * 1000;
-    
+
     if (!startedSet) {
         setHandlerID = setInterval(setHandler, updateClock);
         startedSet = true;
@@ -84,7 +84,6 @@ function pauseTimer() {
     startedSet = false;
 }
 
-
 function resetAll() {
     document.getElementById("timeMinutes").innerHTML = "15";
     document.getElementById("timeSeconds").innerHTML = "00";
@@ -104,22 +103,22 @@ function resetAll() {
 
 function subPointS1() {
     let n = parseInt(document.getElementById("pointS1").innerHTML);
-    document.getElementById("pointS1").innerHTML = (n-1 < 10)? '0'+(n-1) : n-1;
+    document.getElementById("pointS1").innerHTML = (n - 1 < 10) ? '0' + (n - 1) : n - 1;
 }
 
 function addPointS1() {
     let n = parseInt(document.getElementById("pointS1").innerHTML);
-    document.getElementById("pointS1").innerHTML = (n+1 < 10)? '0'+(n+1) : n+1;
+    document.getElementById("pointS1").innerHTML = (n + 1 < 10) ? '0' + (n + 1) : n + 1;
 }
 
 function subPointS2() {
     let n = parseInt(document.getElementById("pointS2").innerHTML);
-    document.getElementById("pointS2").innerHTML = (n-1 < 10)? '0'+(n-1) : n-1;
+    document.getElementById("pointS2").innerHTML = (n - 1 < 10) ? '0' + (n - 1) : n - 1;
 }
 
 function addPointS2() {
     let n = parseInt(document.getElementById("pointS2").innerHTML);
-    document.getElementById("pointS2").innerHTML = (n+1 < 10)? '0'+(n+1) : n+1;
+    document.getElementById("pointS2").innerHTML = (n + 1 < 10) ? '0' + (n + 1) : n + 1;
 }
 
 function changeTimeRemain() {
@@ -132,4 +131,23 @@ function changeSetRemain() {
     let input = prompt();
     document.getElementById("setMinutes").innerHTML = input.substring(0, 2);
     document.getElementById("setSeconds").innerHTML = input.substring(3, 5);
+}
+
+document.addEventListener("keypress", function (e) {
+    if (e.keyCode == 32) {
+        spacebarPressed();
+    }
+});
+
+function spacebarPressed() {
+    if (startedSet || startedTime) {
+        pauseTimer();
+        startedSet = false;
+        startedTime = false;
+    }
+    else {
+        startBoth();
+        startedSet = true;
+        startedTime = true;
+    }
 }
