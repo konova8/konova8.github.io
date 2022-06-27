@@ -98,6 +98,8 @@ function resetAll() {
 
     document.getElementById("pointS1").innerHTML = "00";
     document.getElementById("pointS2").innerHTML = "00";
+
+    document.getElementById("rightContainer").style.backgroundColor = "white";
 }
 
 function subPointS1() {
