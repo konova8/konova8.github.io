@@ -1,12 +1,7 @@
 body {
-    height: 100vh;
     width: 100vw;
     margin: 0%;
     color: black;
-}
-
-body > * {
-    height: 100vh;
 }
 
 #buttonsContainer {
@@ -20,12 +15,12 @@ button {
 #rightContainer {
     background-color: white;
     text-align: center;
-    font-size: 1000%;
+    font-size: 15vmin;
     font-weight: bolder;
 }
 
 #timeStamp {
-    font-size: 175%;
+    font-size: 200%;
 }
 
 p {
