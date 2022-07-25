@@ -1,0 +1,72 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0%;
+    color: black;
+    font-weight: bold;
+
+    display: grid;
+    grid-template-rows: auto 8fr 6fr 4fr;
+    grid-template-areas:    "buttonTopRow"
+                            "timeTimerContainer"
+                            "setTimerContainer"
+                            "pointsContainer";
+}
+
+#buttonTopRow {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    grid-area: buttonTopRow;
+    padding-top: 1vh;
+}
+
+#buttonTopRow button {
+    width: 15%;
+}
+
+.timerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+body p {
+    margin: 0px;
+}
+
+.squadPointsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#timeTimerContainer {
+    grid-area: timeTimerContainer;
+}
+
+#setTimerContainer {
+    grid-area: setTimerContainer;
+}
+
+#pointsContainer {
+    grid-area: pointsContainer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: auto;
+}
+
+#timeStamp {
+    font-size: 1500%;
+}
+
+#setStamp {
+    font-size: 1000%;
+}
+
+.pointsParagraph {
+    font-size: 500%;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <!--link type="text/javascript" src="jquery.js"-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link href="timer.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="timer.js"></script>
+    <title>Dodgeball Timer</title>
+</head>
+
+<body>
+    <div id="buttonTopRow">
+        <button onclick="startBoth()">Start Both</button>
+        <button onclick="pauseTimer()">Pause</button>
+        <button onclick="resetTimers()">Reset both Timers</button>
+        <button onclick="resetAll()">Reset all</button>
+        <button onclick="changeTimeRemain()">Change Time</button>
+        <button onclick="changeSetRemain()">Change Set</button>
+    </div>
+
+    <div id="timeTimerContainer" class="timerContainer">
+        <p id="timeStamp"><span id="timeMinutes">15</span>:<span id="timeSeconds">00</span></p>
+        <div>
+            <button onclick="startTime()">Play Time</button>
+            <button onclick="resetTime()">Reset Time</button>
+        </div>
+    </div>
+
+    <div id="setTimerContainer" class="timerContainer">
+        <p id="setStamp"><span id="setMinutes">03</span>:<span id="setSeconds">00</span></p>
+        <div>
+            <button onclick="startSet()">Play Set</button>
+            <button onclick="resetSet()">Reset Set</button>
+        </div>
+    </div>
+
+    <div id="pointsContainer">
+        <div class="squadPointsContainer">
+            <div>
+                <p id="pointS1" class="pointsParagraph">00</p>
+            </div>
+            <div>
+                <button onclick="subPointS1()">-1</button>
+                <button onclick="addPointS1()">+1</button>
+            </div>
+        </div>
+        <div class="squadPointsContainer">
+            <div>
+                <p id="pointS2" class="pointsParagraph">00</p>
+            </div>
+            <div>
+                <button onclick="subPointS2()">-1</button>
+                <button onclick="addPointS2()">+1</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
