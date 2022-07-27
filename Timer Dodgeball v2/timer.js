@@ -193,3 +193,17 @@ function spacebarPressed() {
         startedTime = true;
     }
 }
+
+function setupLastSet() {
+    document.getElementById("timeMinutes").innerHTML = "01";
+    document.getElementById("timeSeconds").innerHTML = "30";
+    document.getElementById("setMinutes").innerHTML = "01";
+    document.getElementById("setSeconds").innerHTML = "30";
+
+    clearInterval(timeHandlerID);
+    startedTime = false;
+    clearInterval(setHandlerID);
+    startedSet = false;
+
+    document.body.style.background = "white";
+}
