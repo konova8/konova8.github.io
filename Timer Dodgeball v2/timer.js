@@ -71,12 +71,38 @@ function startSet() {
     }
 }
 
-function startBoth() {
+function pauseTime() {
+    clearInterval(timeHandlerID);
+    startedTime = false;
+}
+
+function resetTime() {
+    document.getElementById("timeMinutes").innerHTML = "15";
+    document.getElementById("timeSeconds").innerHTML = "00";
+
+    clearInterval(timeHandlerID);
+    startedTime = false;
+}
+
+function pauseSet() {
+    clearInterval(setHandlerID);
+    startedSet = false;
+}
+
+function resetSet() {
+    document.getElementById("setMinutes").innerHTML = "03";
+    document.getElementById("setSeconds").innerHTML = "00";
+
+    clearInterval(setHandlerID);
+    startedSet = false;
+}
+
+function startAllTimers() {
     startTime();
     startSet();
 }
 
-function pauseTimer() {
+function pauseTimers() {
     clearInterval(timeHandlerID);
     startedTime = false;
 
@@ -101,7 +127,7 @@ function resetAll() {
     document.body.style.background = "white";
 }
 
-function resetTimers() {
+function resetAllTimers() {
     document.getElementById("timeMinutes").innerHTML = "15";
     document.getElementById("timeSeconds").innerHTML = "00";
     document.getElementById("setMinutes").innerHTML = "03";
@@ -157,12 +183,12 @@ document.addEventListener("keypress", function (e) {
 
 function spacebarPressed() {
     if (startedSet || startedTime) {
-        pauseTimer();
+        pauseAllTimers();
         startedSet = false;
         startedTime = false;
     }
     else {
-        startBoth();
+        startAllTimers();
         startedSet = true;
         startedTime = true;
     }
