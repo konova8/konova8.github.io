@@ -9,7 +9,7 @@ let setHandlerID;
 
 function timeHandler() {
     // If the count down is finished, stop
-    if (remainSet < 0 || remainTime < 0) {
+    if (remainTime < 0) {
         clearInterval(timeHandlerID);
         document.getElementById("timeMinutes").innerHTML = "STOP";
         document.getElementById("timeSeconds").innerHTML = "STOP";
