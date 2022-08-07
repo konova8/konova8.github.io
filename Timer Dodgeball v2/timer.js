@@ -102,7 +102,7 @@ function startAllTimers() {
     startSet();
 }
 
-function pauseTimers() {
+function pauseAllTimers() {
     clearInterval(timeHandlerID);
     startedTime = false;
 
