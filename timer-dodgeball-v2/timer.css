@@ -1,3 +1,5 @@
+@import url('https://fonts.google.com/specimen/Righteous?category=Display,Monospace&preview.text=12:34&preview.text_type=custom');
+
 body {
     width: 100vw;
     height: 100vh;
@@ -8,8 +10,8 @@ body {
     display: grid;
     grid-template-rows: auto 8fr 6fr 4fr;
     grid-template-areas:    "buttonTopRow"
-                            "timeTimerContainer"
                             "setTimerContainer"
+                            "timeTimerContainer"
                             "pointsContainer";
 }
 
@@ -22,7 +24,7 @@ body {
 }
 
 #buttonTopRow button {
-    width: 15%;
+    width: 18%;
 }
 
 .timerContainer {
@@ -30,6 +32,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    font-family: 'Righteous', monospace;
 }
 
 body p {
@@ -41,6 +44,7 @@ body p {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    font-family: 'Righteous', monospace;
 }
 
 #timeTimerContainer {
@@ -60,11 +64,11 @@ body p {
 }
 
 #timeStamp {
-    font-size: 1500%;
+    font-size: 1000%;
 }
 
 #setStamp {
-    font-size: 1000%;
+    font-size: 1500%;
 }
 
 .pointsParagraph {
