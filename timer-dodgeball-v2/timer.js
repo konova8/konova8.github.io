@@ -63,6 +63,10 @@ function startTime() {
 function startSet() {
     remainSet = parseInt(document.getElementById("setMinutes").innerHTML) * 60 * 1000 + parseInt(document.getElementById("setSeconds").innerHTML) * 1000;
 
+    if (remainTime < remainSet) {
+        remainSet = remainTime;
+    }
+
     if (!startedSet) {
         setHandlerID = setInterval(setHandler, updateClock);
         startedSet = true;
