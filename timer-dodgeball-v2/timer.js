@@ -9,7 +9,7 @@ let setHandlerID;
 
 function timeHandler() {
     // If the count down is finished, stop
-    if (remainTime < 0) {
+    if (remainTime <= 0) {
         pauseAllTimers();
         clearInterval(timeHandlerID);
         document.getElementById("timeMinutes").innerHTML = "00";
@@ -30,7 +30,7 @@ function timeHandler() {
 
 function setHandler() {
     // If the count down is finished, stop
-    if (remainSet < 0) {
+    if (remainSet <= 0) {
         clearInterval(setHandlerID);
         document.getElementById("setMinutes").innerHTML = "00";
         document.getElementById("setSeconds").innerHTML = "00";
@@ -93,6 +93,8 @@ function pauseSet() {
 function resetSet() {
     document.getElementById("setMinutes").innerHTML = "03";
     document.getElementById("setSeconds").innerHTML = "00";
+    
+    document.body.style.background = "white";
 
     clearInterval(setHandlerID);
     startedSet = false;
