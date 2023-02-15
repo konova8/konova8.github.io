@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <link href="timer.css" rel="stylesheet" type="text/css">
+    <script async="" src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
     <script type="text/javascript" src="timer.js"></script>
     <title>Dodgeball Timer</title>
 </head>
@@ -21,6 +22,8 @@
         <button onclick="resetAllTimers()">Reset All Timers</button>
         <button onclick="resetAll()">Reset All</button>
         <button onclick="setupLastSet()">Last Set</button>
+        <input type="file" title="img" multiple="false" accept="image/*" name="image" id="finput1" onchange="loadFile1(event)">
+        <input type="file" title="img" multiple="false" accept="image/*" name="image" id="finput2" onchange="loadFile2(event)">
     </div>
     
     <div id="setTimerContainer" class="timerContainer">
@@ -63,6 +66,9 @@
             </div>
         </div>
     </div>
+
+    <img id="team1" src=""></img>
+    <img id="team2" src=""></img>
 </body>
 
 </html>

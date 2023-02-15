@@ -74,3 +74,17 @@ body p {
 .pointsParagraph {
     font-size: 500%;
 }
+
+#team1 {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 15%;
+}
+
+#team2 {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    height: 15%;
+}

@@ -7,6 +7,16 @@ let remainSet = 0;
 let timeHandlerID;
 let setHandlerID;
 
+var loadFile1 = function(event) {
+	var image = document.getElementById('team1');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
+
+var loadFile2 = function(event) {
+	var image = document.getElementById('team2');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
+
 function timeHandler() {
     // If the count down is finished, stop
     if (remainTime <= 0) {
