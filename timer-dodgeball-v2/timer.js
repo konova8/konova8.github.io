@@ -15,6 +15,8 @@ function timeHandler() {
         document.getElementById("timeMinutes").innerHTML = "00";
         document.getElementById("timeSeconds").innerHTML = "00";
         document.body.style.background = "red";
+        var audio = new Audio("alarm.mp3");
+        audio.play();
     }
     else {
         remainTime -= updateClock;
@@ -35,6 +37,8 @@ function setHandler() {
         document.getElementById("setMinutes").innerHTML = "00";
         document.getElementById("setSeconds").innerHTML = "00";
         document.body.style.background = "red";
+        var audio = new Audio("alarm.mp3");
+        audio.play();
     }
     else {
         remainSet -= updateClock;
@@ -184,11 +188,17 @@ function changeSetRemain() {
 
 document.addEventListener("keypress", function (e) {
     if (e.keyCode == 32) {
-        spacebarPressed();
+        pressedKey();
     }
 });
 
-function spacebarPressed() {
+document.onkeydown = function (e) {
+    if (e.key == 'p') {
+        pressedKey();
+    }
+}
+
+function pressedKey() {
     if (startedSet || startedTime) {
         pauseAllTimers();
         startedSet = false;
