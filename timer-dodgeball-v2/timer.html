@@ -22,8 +22,34 @@
         <button onclick="resetAllTimers()">Reset All Timers</button>
         <button onclick="resetAll()">Reset All</button>
         <button onclick="setupLastSet()">Last Set</button>
-        <input type="file" title="img" multiple="false" accept="image/*" name="image" id="finput1" onchange="loadFile1(event)">
-        <input type="file" title="img" multiple="false" accept="image/*" name="image" id="finput2" onchange="loadFile2(event)">
+        <!--
+            <input type="file" title="img" multiple="false" accept="image/*" name="image" id="finput1" onchange="loadFile1(event)">
+            <input type="file" title="img" multiple="false" accept="image/*" name="image" id="finput2" onchange="loadFile2(event)">
+        -->
+        <select id="finput1" onchange="loadFile1(event)">
+            <option>Choose</option>
+            <option>Shamrock.png</option>
+            <option>OraGioBat.png</option>
+            <option>Ghinea.png</option>
+            <option>Springout.png</option>
+            <option>Goblins.png</option>
+            <option>Lions.png</option>
+            <option>Swarm.png</option>
+            <option>Lugo.png</option>
+            <option>AIDB.png</option>
+        </select>
+        <select id="finput2" onchange="loadFile2(event)">
+            <option>Choose</option>
+            <option>Shamrock.png</option>
+            <option>OraGioBat.png</option>
+            <option>Ghinea.png</option>
+            <option>Springout.png</option>
+            <option>Goblins.png</option>
+            <option>Lions.png</option>
+            <option>Swarm.png</option>
+            <option>Lugo.png</option>
+            <option>AIDB.png</option>
+        </select>
     </div>
     
     <div id="setTimerContainer" class="timerContainer">

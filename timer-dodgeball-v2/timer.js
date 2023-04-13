@@ -8,13 +8,23 @@ let timeHandlerID;
 let setHandlerID;
 
 var loadFile1 = function(event) {
-	var image = document.getElementById('team1');
-	image.src = URL.createObjectURL(event.target.files[0]);
+    var image = document.getElementById('team1');
+    if (event.target.value == "Choose") {
+        image.src = "";
+    }
+    else {
+        image.src = "loghi/" + event.target.value;
+    }
 };
 
 var loadFile2 = function(event) {
 	var image = document.getElementById('team2');
-	image.src = URL.createObjectURL(event.target.files[0]);
+    if (event.target.value == "Choose") {
+        image.src = "";
+    }
+    else {
+        image.src = "loghi/" + event.target.value;
+    }
 };
 
 function timeHandler() {
