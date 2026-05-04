@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Istruzioni Origami Matrimonio</title>
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style>
+:root {
+  --bg: #9aafe1;
+  --surface: #7a96d1;
+  --text: #fce990;
+  --text-secondary: #fff7c2;
+  --border: #6b87c2;
+  --accent: #fce990;
+  --shadow: 0 1px 3px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.1);
+  --shadow-hover: 0 10px 15px -3px rgba(0,0,0,.2), 0 4px 6px -4px rgba(0,0,0,.1);
+  --radius: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background .3s, color .3s;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 1.5rem;
+  text-align: center;
+  backdrop-filter: blur(8px);
+}
+
+header h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.4);
+}
+
+
+
+
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.playlist-info {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.playlist-info p {
+  color: var(--text-secondary);
+  font-size: .9rem;
+  text-shadow: 0 1px 2px rgba(0,0,0,.3);
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.video-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform .2s, box-shadow .2s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  border: 1px solid var(--border);
+}
+
+.video-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.thumbnail-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 */
+  overflow: hidden;
+  background: #000;
+}
+
+.thumbnail-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .3s;
+}
+
+.video-card:hover .thumbnail-wrapper img {
+  transform: scale(1.05);
+}
+
+.play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  background: rgba(0,0,0,.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.video-card:hover .play-icon {
+  opacity: 1;
+}
+
+.play-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: #fff;
+  margin-left: 3px;
+}
+
+.video-info {
+  padding: 1rem;
+}
+
+.video-info h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-shadow: 0 1px 2px rgba(0,0,0,.35);
+}
+
+@media (max-width: 600px) {
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
+  header h1 {
+    font-size: 1.1rem;
+  }
+  main {
+    padding: 1rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Istruzioni Origami Matrimonio</h1>
+</header>
+
+<main>
+  <div class="playlist-info">
+    <p>Ogni tavolo ha il nome di un origami che trovate come segnaposto.</p>
+    <p>Trovate a disposizione dei fogli per poter provare a rifarli anche voi, buon divertimento!</p>
+  </div>
+
+  <div class="video-grid">
+
+    <a class="video-card" href="https://youtu.be/Wf9tkHVsD04" target="_blank" rel="noopener">
+      <div class="thumbnail-wrapper">
+        <img src="https://img.youtube.com/vi/Wf9tkHVsD04/hqdefault.jpg" alt="Video 1" loading="lazy">
+        <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="video-info">
+        <h3>Tavolo Giglio</h3>
+      </div>
+    </a>
+
+    <a class="video-card" href="https://youtu.be/PS4GyqD57ig" target="_blank" rel="noopener">
+      <div class="thumbnail-wrapper">
+        <img src="https://img.youtube.com/vi/PS4GyqD57ig/hqdefault.jpg" alt="Video 2" loading="lazy">
+        <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="video-info">
+        <h3>Tavolo Ape</h3>
+      </div>
+    </a>
+
+    <a class="video-card" href="https://youtu.be/N7oSVqMZ-qk" target="_blank" rel="noopener">
+      <div class="thumbnail-wrapper">
+        <img src="https://img.youtube.com/vi/N7oSVqMZ-qk/hqdefault.jpg" alt="Video 3" loading="lazy">
+        <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="video-info">
+        <h3>Tavolo Gatto</h3>
+      </div>
+    </a>
+
+    <a class="video-card" href="https://youtu.be/Xx4CaexQUnY" target="_blank" rel="noopener">
+      <div class="thumbnail-wrapper">
+        <img src="https://img.youtube.com/vi/Xx4CaexQUnY/hqdefault.jpg" alt="Video 4" loading="lazy">
+        <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="video-info">
+        <h3>Tavolo Coniglio</h3>
+      </div>
+    </a>
+
+    <a class="video-card" href="https://youtu.be/wfPJ4jl9DPw" target="_blank" rel="noopener">
+      <div class="thumbnail-wrapper">
+        <img src="https://img.youtube.com/vi/wfPJ4jl9DPw/hqdefault.jpg" alt="Video 5" loading="lazy">
+        <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="video-info">
+        <h3>Tavolo Colibrì</h3>
+      </div>
+    </a>
+
+    <a class="video-card" href="https://youtu.be/LWsL-_pgmTc" target="_blank" rel="noopener">
+      <div class="thumbnail-wrapper">
+        <img src="https://img.youtube.com/vi/LWsL-_pgmTc/hqdefault.jpg" alt="Video 6" loading="lazy">
+        <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="video-info">
+        <h3>Tavolo Ninfea</h3>
+      </div>
+    </a>
+
+    <a class="video-card" href="https://youtu.be/1o205ZfC_GU" target="_blank" rel="noopener">
+      <div class="thumbnail-wrapper">
+        <img src="https://img.youtube.com/vi/1o205ZfC_GU/hqdefault.jpg" alt="Video 7" loading="lazy">
+        <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="video-info">
+        <h3>Tavolo Farfalla</h3>
+      </div>
+    </a>
+
+    <a class="video-card" href="https://youtu.be/GC_Szxdqh2Y" target="_blank" rel="noopener">
+      <div class="thumbnail-wrapper">
+        <img src="https://img.youtube.com/vi/GC_Szxdqh2Y/hqdefault.jpg" alt="Video 8" loading="lazy">
+        <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="video-info">
+        <h3>Tavolo Gru</h3>
+      </div>
+    </a>
+
+    <a class="video-card" href="https://youtu.be/Vlb2udqPx-M" target="_blank" rel="noopener">
+      <div class="thumbnail-wrapper">
+        <img src="https://img.youtube.com/vi/Vlb2udqPx-M/hqdefault.jpg" alt="Video 9" loading="lazy">
+        <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+      </div>
+      <div class="video-info">
+        <h3>Tavolo Rana</h3>
+      </div>
+    </a>
+
+  </div>
+</main>
+
+
+
+</body>
+</html>
