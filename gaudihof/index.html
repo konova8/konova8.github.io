@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GaudiHof, il maso che non ti aspetti a Valdaora di Mezzo, nel cuore della Val Pusteria.">
+  <meta name="theme-color" content="#173d35">
+  <title>GaudiHof — Il maso che non ti aspetti</title>
+  <style>
+    :root {
+      --forest: #173d35;
+      --forest-dark: #102c27;
+      --pine: #286052;
+      --cream: #f8f1e3;
+      --paper: #fffdf8;
+      --terracotta: #c6613f;
+      --gold: #e6ad55;
+      --ink: #20302b;
+      --muted: #64736c;
+      --line: #ded9ca;
+      --shadow: 0 18px 50px rgba(20, 53, 44, .12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: Georgia, 'Times New Roman', serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .sans { font-family: Arial, Helvetica, sans-serif; }
+    .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+    header {
+      background: var(--forest);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      inset: auto -5% -2px;
+      height: 90px;
+      background: var(--cream);
+      clip-path: polygon(0 72%, 8% 54%, 17% 70%, 28% 30%, 39% 67%, 50% 44%, 60% 70%, 71% 26%, 82% 65%, 92% 43%, 100% 70%, 100% 100%, 0 100%);
+    }
+    .nav {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      padding: 26px 0;
+      position: relative;
+      z-index: 1;
+    }
+    .brand { font-size: 1.45rem; font-weight: bold; letter-spacing: .08em; }
+    .brand span { color: var(--gold); }
+    nav a {
+      font: 700 .74rem Arial, Helvetica, sans-serif;
+      letter-spacing: .12em;
+      margin-left: 24px;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    nav a:hover { color: var(--gold); }
+
+    .hero { min-height: 570px; padding: 76px 0 150px; position: relative; z-index: 1; }
+    .hero-copy { max-width: 690px; }
+    .eyebrow, .section-kicker {
+      color: var(--gold);
+      font: 700 .72rem Arial, Helvetica, sans-serif;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    h1 { font-size: clamp(3.6rem, 10vw, 8.8rem); letter-spacing: -.07em; line-height: .88; margin: 18px 0 26px; }
+    h1 em { color: var(--gold); display: block; font-size: .43em; font-style: normal; letter-spacing: -.02em; line-height: 1.2; margin-top: 20px; }
+    .hero-lead { color: #dce9df; font-size: clamp(1.1rem, 2.2vw, 1.45rem); max-width: 570px; }
+    .hero-actions { align-items: center; display: flex; flex-wrap: wrap; gap: 16px; margin-top: 34px; }
+    .button {
+      background: var(--terracotta);
+      border: 2px solid var(--terracotta);
+      border-radius: 100px;
+      color: white;
+      display: inline-block;
+      font: 700 .78rem Arial, Helvetica, sans-serif;
+      letter-spacing: .11em;
+      padding: 14px 22px;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: transform .2s, background .2s;
+    }
+    .button:hover { background: #a84d32; transform: translateY(-2px); }
+    .button.outline { background: transparent; border-color: #adc6b3; color: #e9f1e6; }
+    .button.outline:hover { background: rgba(255,255,255,.1); }
+    .hero-note { color: #adc6b3; font: .78rem Arial, Helvetica, sans-serif; margin-top: 19px; }
+
+    main { overflow: hidden; }
+    .intro { padding: 105px 0 86px; }
+    .intro-grid { align-items: end; display: grid; gap: 55px; grid-template-columns: 1.1fr .9fr; }
+    h2 { color: var(--forest); font-size: clamp(2.3rem, 5vw, 4rem); letter-spacing: -.05em; line-height: 1.02; margin: 13px 0 22px; }
+    .intro-text { font-size: 1.18rem; max-width: 610px; }
+    .intro-text strong { color: var(--terracotta); }
+    .stamp {
+      border: 1px solid var(--terracotta);
+      color: var(--terracotta);
+      justify-self: end;
+      max-width: 290px;
+      padding: 27px;
+      position: relative;
+      transform: rotate(3deg);
+    }
+    .stamp::before { border: 1px dashed var(--terracotta); content: ''; inset: 7px; position: absolute; }
+    .stamp p { font-size: 1.35rem; line-height: 1.15; position: relative; text-align: center; }
+    .stamp small { display: block; font: 700 .65rem Arial, Helvetica, sans-serif; letter-spacing: .16em; margin-top: 14px; position: relative; text-align: center; text-transform: uppercase; }
+
+    .services { background: var(--paper); padding: 90px 0; }
+    .section-heading { align-items: end; display: flex; justify-content: space-between; margin-bottom: 42px; }
+    .section-heading h2 { margin-bottom: 0; max-width: 600px; }
+    .section-heading > p { color: var(--muted); font-size: 1.05rem; max-width: 285px; }
+    .cards { display: grid; gap: 17px; grid-template-columns: repeat(3, 1fr); }
+    .card { background: var(--cream); border: 1px solid var(--line); padding: 27px 24px 29px; transition: box-shadow .2s, transform .2s; }
+    .card:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
+    .card:nth-child(2n) { background: #f1eee2; }
+    .icon { display: block; font-size: 2rem; margin-bottom: 14px; }
+    .card h3 { color: var(--forest); font-size: 1.3rem; line-height: 1.1; margin-bottom: 10px; }
+    .card p { color: #56655e; font-size: .97rem; }
+    .tag { color: var(--terracotta); display: block; font: 700 .62rem Arial, Helvetica, sans-serif; letter-spacing: .12em; margin-top: 18px; text-transform: uppercase; }
+
+    .experience { background: var(--forest); color: var(--cream); padding: 105px 0; }
+    .experience-grid { display: grid; gap: 65px; grid-template-columns: .8fr 1.2fr; }
+    .experience h2 { color: var(--cream); }
+    .experience .section-kicker { color: var(--gold); }
+    .experience-intro { color: #bfd1c3; font-size: 1.08rem; }
+    .steps { display: grid; gap: 26px; }
+    .step { border-bottom: 1px solid rgba(255,255,255,.18); display: grid; gap: 20px; grid-template-columns: 44px 1fr; padding-bottom: 24px; }
+    .step:last-child { border-bottom: 0; }
+    .step-number { color: var(--gold); font: 700 1.1rem Arial, Helvetica, sans-serif; }
+    .step h3 { font-size: 1.3rem; margin-bottom: 4px; }
+    .step p { color: #bfd1c3; }
+
+    .details { padding: 90px 0; }
+    .details-grid { display: grid; gap: 20px; grid-template-columns: repeat(3, 1fr); }
+    .detail { border-left: 3px solid var(--gold); padding: 8px 20px; }
+    .detail strong { color: var(--forest); display: block; font-size: 1.2rem; margin-bottom: 4px; }
+    .detail span { color: var(--muted); font: .85rem Arial, Helvetica, sans-serif; }
+
+    .cta { background: var(--terracotta); color: white; padding: 78px 0; text-align: center; }
+    .cta h2 { color: white; margin-left: auto; margin-right: auto; max-width: 680px; }
+    .cta p { font-size: 1.13rem; margin: 0 auto 28px; max-width: 570px; }
+    .cta .button { background: var(--forest); border-color: var(--forest); }
+    .cta .button:hover { background: var(--forest-dark); }
+
+    footer { background: var(--forest-dark); color: #b7cabe; padding: 30px 0; }
+    .footer-inner { align-items: center; display: flex; justify-content: space-between; }
+    footer strong { color: var(--cream); font-size: 1.2rem; }
+    footer p { font: .74rem Arial, Helvetica, sans-serif; }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    @media (max-width: 760px) {
+      .container { width: min(100% - 30px, 600px); }
+      .nav { padding: 19px 0; }
+      nav a { margin-left: 12px; }
+      nav a:first-child { display: none; }
+      .hero { min-height: 550px; padding: 75px 0 125px; }
+      .intro, .services, .experience, .details { padding: 70px 0; }
+      .intro-grid, .experience-grid { gap: 38px; grid-template-columns: 1fr; }
+      .stamp { justify-self: start; }
+      .section-heading { align-items: start; display: block; }
+      .section-heading > p { margin-top: 18px; }
+      .cards, .details-grid { grid-template-columns: 1fr; }
+      .card { padding: 23px 20px; }
+      .footer-inner { align-items: start; flex-direction: column; gap: 9px; }
+    }
+    @media (max-width: 430px) {
+      h1 { font-size: 4.2rem; }
+      .hero-actions { align-items: stretch; flex-direction: column; }
+      .button { text-align: center; }
+      .hero-note { font-size: .7rem; }
+    }
+  </style>
+</head>
+<body>
+  <header id="top">
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#top">Gaudi<span>Hof</span></a>
+        <nav aria-label="Navigazione principale">
+          <a href="#esperienza">L'esperienza</a>
+          <a href="#servizi">Servizi</a>
+          <a href="#contatti">Contatti</a>
+        </nav>
+      </div>
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Valdaora di Mezzo · Val Pusteria</p>
+          <h1>Il maso<em>che non ti aspetti.</em></h1>
+          <p class="hero-lead">Una casa tra le Dolomiti, un cestino di speck al binario e quel tipo di ospitalità che ti fa sentire a casa. Anche se vieni da molto lontano.</p>
+          <div class="hero-actions">
+            <a class="button" href="#contatti">Vieni a trovarci</a>
+            <a class="button outline" href="#servizi">Scopri il maso</a>
+          </div>
+          <p class="hero-note">Qui si parla italiano, tedesco, milanese, romano e tutto quello che sta nel mezzo.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro" id="esperienza">
+      <div class="container intro-grid">
+        <div>
+          <p class="section-kicker">L'accoglienza che sognavi (o quasi)</p>
+          <h2>Arrivi ospite.<br>Riparti di casa.</h2>
+          <p class="intro-text">A GaudiHof l'accoglienza comincia ancora prima del check-in: ti aspettiamo in stazione con un <strong>cesto di vimini pieno di cose buone</strong> e un sorriso calibrato sul tuo dialetto. Il resto lo fanno la montagna, il silenzio e le nostre idee discutibili ma sempre ben intenzionate.</p>
+        </div>
+        <aside class="stamp" aria-label="Promessa di GaudiHof">
+          <p>Dolomiti vere.<br>Esperienze quasi.</p>
+          <small>La promessa GaudiHof</small>
+        </aside>
+      </div>
+    </section>
+
+    <section class="services" id="servizi">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Servizi esclusivi & unici</p>
+            <h2>Il soggiorno,<br>fatto a modo nostro.</h2>
+          </div>
+          <p>Ogni servizio è pensato per rendere la tua vacanza più semplice, più buona o almeno più memorabile.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <span class="icon" aria-hidden="true">🧺</span>
+            <h3>Welcome in stazione</h3>
+            <p>Ti veniamo a prendere al binario con speck, formaggi di malga e pane di segale croccante. Il trolley lo portiamo noi. Le aspettative, invece, sono tue.</p>
+            <span class="tag">Stile Heidi, ma con coincidenze</span>
+          </article>
+          <article class="card">
+            <span class="icon" aria-hidden="true">🥚</span>
+            <h3>Uova & latte, match perfetto</h3>
+            <p>Ogni mattina scegli la gallina più simpatica e la mucca con lo sguardo più affidabile. Il prodotto è fresco, il match è sempre consensuale.</p>
+            <span class="tag">Dal pollaio, con amore</span>
+          </article>
+          <article class="card">
+            <span class="icon" aria-hidden="true">🌿</span>
+            <h3>Orto senza confini</h3>
+            <p>Ortaggi classici, erbe aromatiche e una piccola lezione su come riconoscere le piante che è meglio lasciare dove sono. Natura sì, guai no.</p>
+            <span class="tag">Botanica responsabile</span>
+          </article>
+          <article class="card">
+            <span class="icon" aria-hidden="true">💻</span>
+            <h3>Supporto IT 24/7</h3>
+            <p>Il router lampeggia in modo sospetto? Il nostro tecnico ti guiderà con pazienza nel rituale più antico dell'informatica: spegni, aspetta, riaccendi.</p>
+            <span class="tag">Riavviare è la risposta</span>
+          </article>
+          <article class="card">
+            <span class="icon" aria-hidden="true">🧭</span>
+            <h3>Indicazioni creative</h3>
+            <p>Per Tre Cime e Lago di Braies ti diamo indicazioni chiare, aggiornate e possibilmente corrette. Le deviazioni indimenticabili restano comunque incluse.</p>
+            <span class="tag">Perdersi, ma con criterio</span>
+          </article>
+          <article class="card">
+            <span class="icon" aria-hidden="true">🦶</span>
+            <h3>VIP Foot-Club</h3>
+            <p>Se torni a trovarci, ricevi una foto esclusiva del giorno: piedi umani o zampe animali, sempre con uno sfondo dolomitico da cartolina.</p>
+            <span class="tag">Fedeltà a passo lento</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience">
+      <div class="container experience-grid">
+        <div>
+          <p class="section-kicker">Una giornata tipo</p>
+          <h2>La routine<br>qui prende ferie.</h2>
+          <p class="experience-intro">A GaudiHof ogni giornata ha un programma. Non è detto che sia quello previsto, ma parte sempre con una buona colazione e finisce con una vista spettacolare.</p>
+        </div>
+        <div class="steps">
+          <article class="step"><span class="step-number">01</span><div><h3>Mattina — colazione locale</h3><p>Dolci tradizionali, marmellate, latte fresco e caffè. Le bevande alcoliche sono riservate agli adulti e si gustano con responsabilità.</p></div></article>
+          <article class="step"><span class="step-number">02</span><div><h3>Pomeriggio — aria buona</h3><p>Orto, sentieri, paesi vicini e deviazioni ragionevoli. Se vuoi, ti prestiamo una mappa. Se non vuoi, ti accompagniamo noi.</p></div></article>
+          <article class="step"><span class="step-number">03</span><div><h3>Sera — panorama aperto</h3><p>Un altare? Solo per cerimonie concordate con professionisti abilitati. Per tutti gli altri, una panchina davanti alle Dolomiti funziona benissimo.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="details" aria-label="Informazioni pratiche">
+      <div class="container details-grid">
+        <div class="detail"><strong>Valdaora di Mezzo</strong><span>Nel cuore della Val Pusteria</span></div>
+        <div class="detail"><strong>Ospitalità senza formalità</strong><span>La tua lingua, il tuo ritmo</span></div>
+        <div class="detail"><strong>Montagna a portata di mano</strong><span>Sentieri, sapori e panorami</span></div>
+      </div>
+    </section>
+
+    <section class="cta" id="contatti">
+      <div class="container">
+        <p class="section-kicker">Pronto per il tuo prossimo fuori programma?</p>
+        <h2>Porta il tuo dialetto.<br>Al resto pensiamo noi.</h2>
+        <p>Scrivici per informazioni, disponibilità e per raccontarci quale gallina vorresti incontrare per prima.</p>
+        <a class="button" href="mailto:ciao@gaudihof.it">Scrivici una mail</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <strong>GaudiHof</strong>
+      <p>Valdaora di Mezzo · Val Pusteria · <a href="#top">Torna su ↑</a></p>
+    </div>
+  </footer>
+</body>
+</html>
