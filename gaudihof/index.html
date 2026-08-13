@@ -34,7 +34,10 @@
     .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
 
     header {
-      background: var(--forest);
+      background-color: var(--forest);
+      background-image: linear-gradient(90deg, rgba(16, 44, 39, .94) 0%, rgba(23, 61, 53, .78) 52%, rgba(23, 61, 53, .42) 100%), url('assets/gaudihof-hero.jpg');
+      background-position: center;
+      background-size: cover;
       color: var(--cream);
       position: relative;
       overflow: hidden;
@@ -102,6 +105,17 @@
     h2 { color: var(--forest); font-size: clamp(2.3rem, 5vw, 4rem); letter-spacing: -.05em; line-height: 1.02; margin: 13px 0 22px; }
     .intro-text { font-size: 1.18rem; max-width: 610px; }
     .intro-text strong { color: var(--terracotta); }
+    .intro-photo, .service-photo, .experience-photo { margin: 55px 0 0; }
+    .intro-photo img, .service-photo img, .experience-photo img {
+      display: block;
+      height: auto;
+      object-fit: cover;
+      width: 100%;
+    }
+    .intro-photo img { aspect-ratio: 4 / 3; }
+    .service-photo img { aspect-ratio: 2.25 / 1; }
+    .experience-photo img { aspect-ratio: 16 / 9; }
+    .photo-caption { color: var(--muted); font: .72rem Arial, Helvetica, sans-serif; margin-top: 10px; }
     .stamp {
       border: 1px solid var(--terracotta);
       color: var(--terracotta);
@@ -120,13 +134,30 @@
     .section-heading h2 { margin-bottom: 0; max-width: 600px; }
     .section-heading > p { color: var(--muted); font-size: 1.05rem; max-width: 285px; }
     .cards { display: grid; gap: 17px; grid-template-columns: repeat(3, 1fr); }
-    .card { background: var(--cream); border: 1px solid var(--line); padding: 27px 24px 29px; transition: box-shadow .2s, transform .2s; }
-    .card:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
+    .card { background: var(--cream); border: 1px solid var(--line); padding: 27px 24px 29px; position: relative; transition: box-shadow .2s, transform .2s; }
+    .card:hover, .card:focus-within { box-shadow: var(--shadow); transform: translateY(-4px); }
     .card:nth-child(2n) { background: #f1eee2; }
+    .card-trigger { border-radius: inherit; inset: 0; position: absolute; z-index: 2; }
+    .card-trigger:focus-visible { outline: 3px solid var(--terracotta); outline-offset: 4px; }
+    .sr-only { clip: rect(0, 0, 0, 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
     .icon { display: block; font-size: 2rem; margin-bottom: 14px; }
     .card h3 { color: var(--forest); font-size: 1.3rem; line-height: 1.1; margin-bottom: 10px; }
     .card p { color: #56655e; font-size: .97rem; }
     .tag { color: var(--terracotta); display: block; font: 700 .62rem Arial, Helvetica, sans-serif; letter-spacing: .12em; margin-top: 18px; text-transform: uppercase; }
+
+    .feature-modal { align-items: center; background: rgba(16, 44, 39, .82); display: flex; inset: 0; justify-content: center; opacity: 0; padding: 20px; pointer-events: none; position: fixed; transition: opacity .2s, visibility .2s; visibility: hidden; z-index: 20; }
+    .feature-modal:target { opacity: 1; pointer-events: auto; visibility: visible; }
+    .feature-dialog { background: var(--paper); box-shadow: 0 24px 80px rgba(0, 0, 0, .35); display: grid; grid-template-columns: minmax(260px, .9fr) 1.1fr; max-height: min(760px, calc(100vh - 40px)); max-width: 900px; overflow: auto; position: relative; width: 100%; }
+    .feature-dialog img { height: 100%; min-height: 320px; object-fit: cover; width: 100%; }
+    .feature-copy { padding: 42px 42px 38px; }
+    .feature-copy h2 { font-size: clamp(2rem, 4vw, 3.25rem); margin: 10px 0 18px; }
+    .feature-copy p { color: #56655e; font-size: 1.05rem; }
+    .feature-copy p + p { margin-top: 14px; }
+    .feature-label { color: var(--terracotta); font: 700 .68rem Arial, Helvetica, sans-serif; letter-spacing: .16em; text-transform: uppercase; }
+    .feature-close { color: var(--forest); font: 700 1.6rem/1 Arial, Helvetica, sans-serif; padding: 8px; position: absolute; right: 14px; text-decoration: none; top: 12px; z-index: 3; }
+    .feature-close:hover { color: var(--terracotta); }
+    .feature-close:focus-visible { outline: 3px solid var(--terracotta); }
+    .feature-note { color: var(--terracotta); display: block; font: 700 .68rem Arial, Helvetica, sans-serif; letter-spacing: .1em; margin-top: 24px; text-transform: uppercase; }
 
     .experience { background: var(--forest); color: var(--cream); padding: 105px 0; }
     .experience-grid { display: grid; gap: 65px; grid-template-columns: .8fr 1.2fr; }
@@ -171,6 +202,10 @@
       .section-heading > p { margin-top: 18px; }
       .cards, .details-grid { grid-template-columns: 1fr; }
       .card { padding: 23px 20px; }
+      .feature-modal { padding: 12px; }
+      .feature-dialog { display: block; max-height: calc(100vh - 24px); }
+      .feature-dialog img { height: 210px; min-height: 0; }
+      .feature-copy { padding: 32px 24px 28px; }
       .footer-inner { align-items: start; flex-direction: column; gap: 9px; }
     }
     @media (max-width: 430px) {
@@ -221,72 +256,215 @@
           <small>Valdaora di Mezzo</small>
         </aside>
       </div>
+      <figure class="intro-photo">
+        <img src="assets/gaudihof-accoglienza.jpg" alt="Cestino di vimini con prodotti altoatesini davanti a un maso di montagna" loading="lazy">
+        <figcaption class="photo-caption">L'accoglienza che sogni, con un cestino di vimini già pronto.</figcaption>
+      </figure>
     </section>
 
     <section class="services" id="servizi">
       <div class="container">
         <div class="section-heading">
           <div>
-            <p class="section-kicker">Servizi Esclusivi & Unici</p>
+            <p class="section-kicker">Servizi Esclusivi &amp; Unici</p>
             <h2>Qui il soggiorno<br>non è mai ordinario.</h2>
           </div>
           <p>Dal prelievo in stazione alle indicazioni turistiche creative: scopri tutto quello che rende GaudiHof davvero unico.</p>
         </div>
+        <figure class="service-photo">
+          <img src="assets/gaudihof-orto.jpg" alt="Orto del maso con uova fresche, latte, verdure e galline sullo sfondo" loading="lazy">
+          <figcaption class="photo-caption">Dal nostro orto, direttamente alla tavola.</figcaption>
+        </figure>
         <div class="cards">
           <article class="card">
+            <a class="card-trigger" href="#feature-accoglienza" aria-label="Apri dettagli: Welcome in Stazione Stile Heidi"><span class="sr-only">Apri dettagli</span></a>
             <span class="icon" aria-hidden="true">🧺</span>
             <h3>Welcome in Stazione "Stile Heidi"</h3>
             <p>Ti veniamo a prendere direttamente al binario con il nostro cestino di vimini colmo di speck, formaggi di malga e pane di segale croccante.</p>
             <span class="tag">Parliamo la TUA lingua</span>
           </article>
           <article class="card">
+            <a class="card-trigger" href="#feature-religiosi" aria-label="Apri dettagli: Servizi Religiosi in Loco"><span class="sr-only">Apri dettagli</span></a>
             <span class="icon" aria-hidden="true">💒</span>
             <h3>Servizi Religiosi in Loco (a pagamento)</h3>
             <p>Il nostro prete residente è sempre a disposizione. Celebrazioni, benedizioni e funzioni al nostro altare all'aperto con vista mozzafiato sulle Dolomiti.</p>
             <span class="tag">Con vista mozzafiato</span>
           </article>
           <article class="card">
+            <a class="card-trigger" href="#feature-chickenmatch" aria-label="Apri dettagli: Uova e Latte Tinder Style"><span class="sr-only">Apri dettagli</span></a>
             <span class="icon" aria-hidden="true">📱</span>
-            <h3>Uova & Latte "Tinder Style"</h3>
+            <h3>Uova &amp; Latte "Tinder Style"</h3>
             <p>Scarica la nostra app <em>ChickenMatch</em>: ogni mattina sfoglia i profili delle nostre galline e scegli da chi prelevare l'uovo fresco! Stessa cosa per il latte: match con la mucca che ti sta più simpatica.</p>
             <span class="tag">Match con la natura</span>
           </article>
           <article class="card">
+            <a class="card-trigger" href="#feature-footclub" aria-label="Apri dettagli: VIP Foot-Club per Ospiti Fedeli"><span class="sr-only">Apri dettagli</span></a>
             <span class="icon" aria-hidden="true">🦶</span>
             <h3>VIP Foot-Club per Ospiti Fedeli</h3>
             <p>Sei già stato da noi? Per ogni soggiorno successivo riceverai una foto del giorno esclusiva: piedi umani o zampe animali con gli sfondi più iconici delle Dolomiti.</p>
             <span class="tag">Per ospiti già affezionati</span>
           </article>
           <article class="card">
+            <a class="card-trigger" href="#feature-orto" aria-label="Apri dettagli: Orto Botanico Senza Confini"><span class="sr-only">Apri dettagli</span></a>
             <span class="icon" aria-hidden="true">🥬</span>
             <h3>Orto Botanico "Senza Confini"</h3>
             <p>Coltiviamo ortaggi classici, erbe aromatiche e una selezione di piante di dubbia legalità per veri intenditori della natura.</p>
             <span class="tag">Per veri intenditori della natura</span>
           </article>
           <article class="card">
+            <a class="card-trigger" href="#feature-colazione" aria-label="Apri dettagli: Colazione ad Alto Gradimento"><span class="sr-only">Apri dettagli</span></a>
             <span class="icon" aria-hidden="true">🥐</span>
             <h3>Colazione ad Alto Gradimento</h3>
             <p>Dolci tradizionali generosamente sfumati con grappe e liquori locali. <em>Disponibile e consigliato anche per i più piccoli!</em></p>
             <span class="tag">La colazione più originale della valle</span>
           </article>
           <article class="card">
+            <a class="card-trigger" href="#feature-it" aria-label="Apri dettagli: Supporto IT 24 su 7"><span class="sr-only">Apri dettagli</span></a>
             <span class="icon" aria-hidden="true">💻</span>
             <h3>Supporto IT 24/7</h3>
             <p>La connessione o il PC ti danno problemi in alta quota? Il nostro tecnico è sempre sveglio per guidarti nel riavvio del router.</p>
             <span class="tag">Anche in alta quota</span>
           </article>
           <article class="card">
+            <a class="card-trigger" href="#feature-indicazioni" aria-label="Apri dettagli: Indicazioni Turistiche Creative"><span class="sr-only">Apri dettagli</span></a>
             <span class="icon" aria-hidden="true">🗺️</span>
             <h3>Indicazioni Turistiche "Creative"</h3>
             <p>Chiedici pure come raggiungere le Tre Cime di Lavaredo o il Lago di Braies: ti daremo indicazioni quasi sempre sbagliate per farteli scoprire attraverso deviazioni indimenticabili!</p>
             <span class="tag">Deviazioni indimenticabili</span>
           </article>
           <article class="card">
+            <a class="card-trigger" href="#feature-gallo" aria-label="Apri dettagli: Sveglia al Gallo Premium"><span class="sr-only">Apri dettagli</span></a>
             <span class="icon" aria-hidden="true">🐓</span>
             <h3>Sveglia al Gallo Premium</h3>
             <p>Se vuoi iniziare la giornata presto, il nostro gallo ti offrirà una sveglia naturale e puntuale. Nessun pulsante snooze, ma puoi sempre provare a negoziare con lui.</p>
             <span class="tag">Puntuale, a modo suo</span>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-modal" id="feature-accoglienza" aria-labelledby="title-accoglienza">
+      <div class="feature-dialog" role="dialog" aria-modal="true" aria-labelledby="title-accoglienza">
+        <a class="feature-close" href="#servizi" aria-label="Chiudi popup">×</a>
+        <img src="assets/feature-accoglienza.jpg" alt="Cestino di vimini con specialità altoatesine alla stazione">
+        <div class="feature-copy">
+          <span class="feature-label">Servizio numero uno</span>
+          <h2 id="title-accoglienza">Welcome in Stazione "Stile Heidi"</h2>
+          <p>Il viaggio comincia ufficialmente quando scendi dal treno e qualcuno ti accoglie con un cestino di vimini grande abbastanza da contenere la merenda, il pranzo e forse anche le tue aspettative.</p>
+          <p>Dentro trovi speck, formaggi di malga, pane di segale croccante e la certezza che, almeno per i primi dieci minuti, nessuno ti chiederà di trascinare il trolley su una salita.</p>
+          <span class="feature-note">La coincidenza più gustosa della Val Pusteria.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-modal" id="feature-religiosi" aria-labelledby="title-religiosi">
+      <div class="feature-dialog" role="dialog" aria-modal="true" aria-labelledby="title-religiosi">
+        <a class="feature-close" href="#servizi" aria-label="Chiudi popup">×</a>
+        <img src="assets/feature-religiosi.jpg" alt="Panorama alpino visto dall'area esterna del maso">
+        <div class="feature-copy">
+          <span class="feature-label">Servizio spirituale con vista</span>
+          <h2 id="title-religiosi">Servizi Religiosi in Loco</h2>
+          <p>Per chi desidera una celebrazione, una benedizione o semplicemente un momento di raccoglimento con vista sulle Dolomiti, GaudiHof propone un servizio in loco a pagamento.</p>
+          <p>L'altare all'aperto è pronto, il panorama pure. Per la parte burocratica, liturgica e organizzativa ci affidiamo a professionisti abilitati: anche la buona sorte ama avere i documenti in ordine.</p>
+          <span class="feature-note">Prenotazione necessaria. Miracoli non garantiti.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-modal" id="feature-chickenmatch" aria-labelledby="title-chickenmatch">
+      <div class="feature-dialog" role="dialog" aria-modal="true" aria-labelledby="title-chickenmatch">
+        <a class="feature-close" href="#servizi" aria-label="Chiudi popup">×</a>
+        <img src="assets/feature-chickenmatch.jpg" alt="Galline e prodotti freschi dell'orto del maso">
+        <div class="feature-copy">
+          <span class="feature-label">Agricoltura con interfaccia utente</span>
+          <h2 id="title-chickenmatch">Uova &amp; Latte "Tinder Style"</h2>
+          <p>Ogni mattina puoi consultare i profili delle nostre galline, valutare la personalità, il piumaggio e l'attitudine alla produzione di uova. Swipe a destra e la colazione prende una piega sorprendentemente agricola.</p>
+          <p>Per il latte funziona allo stesso modo, anche se le mucche tendono a rispondere ai messaggi con un'occhiata perplessa. Il prodotto è fresco, il match è discutibile, la fattoria è autentica.</p>
+          <span class="feature-note">Nessun abbonamento premium. Solo fieno.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-modal" id="feature-footclub" aria-labelledby="title-footclub">
+      <div class="feature-dialog" role="dialog" aria-modal="true" aria-labelledby="title-footclub">
+        <a class="feature-close" href="#servizi" aria-label="Chiudi popup">×</a>
+        <img src="assets/feature-footclub.jpg" alt="Panorama dolomitico del VIP Foot-Club">
+        <div class="feature-copy">
+          <span class="feature-label">Programma fedeltà senza dignità</span>
+          <h2 id="title-footclub">VIP Foot-Club</h2>
+          <p>Se torni a GaudiHof, entri automaticamente nel club più esclusivo della valle: riceverai una foto del giorno con piedi umani o zampe animali in posa davanti a uno degli sfondi più iconici delle Dolomiti.</p>
+          <p>Non accumuli punti, non sblocchi livelli e non ottieni sconti. Ottieni qualcosa di molto più raro: una fotografia che nessuno ti ha chiesto, ma che finirai per mostrare a tutti.</p>
+          <span class="feature-note">Fedeltà a passo lento, letteralmente.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-modal" id="feature-orto" aria-labelledby="title-orto">
+      <div class="feature-dialog" role="dialog" aria-modal="true" aria-labelledby="title-orto">
+        <a class="feature-close" href="#servizi" aria-label="Chiudi popup">×</a>
+        <img src="assets/feature-orto.jpg" alt="Orto alpino con verdure ed erbe aromatiche">
+        <div class="feature-copy">
+          <span class="feature-label">Botanica rurale e confini creativi</span>
+          <h2 id="title-orto">Orto Botanico "Senza Confini"</h2>
+          <p>Nel nostro orto coltiviamo ortaggi classici, erbe aromatiche e una selezione di piante talmente misteriose da richiedere una targhetta, una guida e forse un avvocato.</p>
+          <p>La visita è dedicata a chi ama la natura, sa distinguere una zucchina da una decisione sbagliata e preferisce osservare ciò che non conosce senza portarselo a casa.</p>
+          <span class="feature-note">Guardare, annusare, non improvvisare.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-modal" id="feature-colazione" aria-labelledby="title-colazione">
+      <div class="feature-dialog" role="dialog" aria-modal="true" aria-labelledby="title-colazione">
+        <a class="feature-close" href="#servizi" aria-label="Chiudi popup">×</a>
+        <img src="assets/feature-colazione.jpg" alt="Colazione rustica con pane, dolci e prodotti locali">
+        <div class="feature-copy">
+          <span class="feature-label">Il pasto più importante della giornata</span>
+          <h2 id="title-colazione">Colazione ad Alto Gradimento</h2>
+          <p>La giornata parte con dolci tradizionali, pane fresco, marmellate e prodotti locali. Alcune ricette possono essere sfumate con grappe e liquori della valle, sempre con moderazione e solo per ospiti adulti.</p>
+          <p>Per i più piccoli abbiamo latte, succhi e dolci senza alcol: perché anche loro meritano una colazione memorabile, ma non necessariamente una carriera da sommelier prima delle otto.</p>
+          <span class="feature-note">Energia alpina. Responsabilità inclusa.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-modal" id="feature-it" aria-labelledby="title-it">
+      <div class="feature-dialog" role="dialog" aria-modal="true" aria-labelledby="title-it">
+        <a class="feature-close" href="#servizi" aria-label="Chiudi popup">×</a>
+        <img src="assets/feature-it.jpg" alt="Maso di montagna con dettagli tecnologici e connessione internet">
+        <div class="feature-copy">
+          <span class="feature-label">Tecnologia ad alta quota</span>
+          <h2 id="title-it">Supporto IT 24/7</h2>
+          <p>La connessione salta proprio mentre stai inviando la foto del panorama? Il nostro tecnico è pronto a guidarti attraverso la procedura più sofisticata dell'informatica alpina: spegnere e riaccendere il router.</p>
+          <p>Se il problema persiste, analizzeremo la situazione con grande serietà, poi daremo la colpa alla montagna, al meteo o a quel cavo che nessuno ammette di aver spostato.</p>
+          <span class="feature-note">Il cloud è sopra di noi. Letteralmente.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-modal" id="feature-indicazioni" aria-labelledby="title-indicazioni">
+      <div class="feature-dialog" role="dialog" aria-modal="true" aria-labelledby="title-indicazioni">
+        <a class="feature-close" href="#servizi" aria-label="Chiudi popup">×</a>
+        <img src="assets/feature-indicazioni.jpg" alt="Sentiero alpino con panorama sulle Dolomiti">
+        <div class="feature-copy">
+          <span class="feature-label">Orientamento creativo</span>
+          <h2 id="title-indicazioni">Indicazioni Turistiche "Creative"</h2>
+          <p>Chiedici come raggiungere le Tre Cime di Lavaredo o il Lago di Braies. Ti forniremo indicazioni dettagliate, appassionate e quasi sempre sbagliate, ma con deviazioni che ricorderai per anni.</p>
+          <p>Il nostro metodo combina intuizione locale, mappe piegate male e una fiducia incrollabile nel fatto che prima o poi ogni strada porti da qualche parte. Porta scarpe comode e una merenda.</p>
+          <span class="feature-note">Perdersi è più bello quando lo avevamo previsto.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-modal" id="feature-gallo" aria-labelledby="title-gallo">
+      <div class="feature-dialog" role="dialog" aria-modal="true" aria-labelledby="title-gallo">
+        <a class="feature-close" href="#servizi" aria-label="Chiudi popup">×</a>
+        <img src="assets/feature-gallo.jpg" alt="Gallo del maso davanti alle Dolomiti all'alba">
+        <div class="feature-copy">
+          <span class="feature-label">Sveglia naturale premium</span>
+          <h2 id="title-gallo">Sveglia al Gallo Premium</h2>
+          <p>Alle prime luci dell'alba il nostro gallo prende servizio. Non ha un pulsante snooze, non accetta rinvii e non conosce il concetto di “ancora cinque minuti”.</p>
+          <p>In compenso offre una puntualità impeccabile, una presenza scenica notevole e un repertorio vocale che migliora con la distanza dalla camera da letto.</p>
+          <span class="feature-note">Puntuale, a modo suo. Soprattutto suo.</span>
         </div>
       </div>
     </section>
@@ -297,10 +475,13 @@
           <p class="section-kicker">Il maso che non ti aspetti in Val Pusteria</p>
           <h2>GaudiHof,<br>in poche parole.</h2>
           <p class="experience-intro">Il "Maso del Divertimento e della Buona Sorte", situato nel cuore di Valdaora di Mezzo.</p>
+          <figure class="experience-photo">
+            <img src="assets/gaudihof-panorama.jpg" alt="Panorama delle Dolomiti visto da una panchina vicino al maso" loading="lazy">
+          </figure>
         </div>
         <div class="steps">
           <article class="step"><span class="step-number">01</span><div><h3>L'Accoglienza che Sognavi (o Quasi)</h3><p>Welcome in Stazione "Stile Heidi" e parliamo la TUA lingua.</p></div></article>
-          <article class="step"><span class="step-number">02</span><div><h3>Servizi Esclusivi & Unici</h3><p>Uova & Latte "Tinder Style", VIP Foot-Club per Ospiti Fedeli e Orto Botanico "Senza Confini".</p></div></article>
+          <article class="step"><span class="step-number">02</span><div><h3>Servizi Esclusivi &amp; Unici</h3><p>Uova &amp; Latte "Tinder Style", VIP Foot-Club per Ospiti Fedeli e Orto Botanico "Senza Confini".</p></div></article>
           <article class="step"><span class="step-number">03</span><div><h3>Un soggiorno indimenticabile</h3><p>Colazione ad Alto Gradimento, Supporto IT 24/7 e Indicazioni Turistiche "Creative".</p></div></article>
         </div>
       </div>
@@ -319,7 +500,7 @@
         <p class="section-kicker">Pronto per il tuo prossimo fuori programma?</p>
         <h2>Porta il tuo dialetto.<br>Al resto pensiamo noi.</h2>
         <p>Scrivici per informazioni, disponibilità e per raccontarci quale gallina vorresti incontrare per prima.</p>
-        <a class="button" href="mailto:ciao@gaudihof.it">Scrivici una mail</a>
+        <a class="button" href="https://youtu.be/dQw4w9WgXcQ">Scrivici una mail</a>
       </div>
     </section>
   </main>
