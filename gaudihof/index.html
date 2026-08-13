@@ -6,6 +6,9 @@
   <meta name="description" content="GaudiHof, il maso che non ti aspetti a Valdaora di Mezzo, nel cuore della Val Pusteria.">
   <meta name="theme-color" content="#173d35">
   <title>GaudiHof — Il maso che non ti aspetti</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&amp;display=swap" rel="stylesheet">
   <style>
     :root {
       --forest: #173d35;
@@ -58,7 +61,7 @@
       position: relative;
       z-index: 1;
     }
-    .brand { font-size: 1.45rem; font-weight: bold; letter-spacing: .08em; }
+    .brand { font-family: 'MedievalSharp', Georgia, 'Times New Roman', serif; font-size: 1.45rem; font-weight: 400; letter-spacing: .08em; }
     .brand span { color: var(--gold); }
     nav a {
       font: 700 .74rem Arial, Helvetica, sans-serif;
@@ -147,6 +150,7 @@
 
     .feature-modal { align-items: center; background: rgba(16, 44, 39, .82); display: flex; inset: 0; justify-content: center; opacity: 0; padding: 20px; pointer-events: none; position: fixed; transition: opacity .2s, visibility .2s; visibility: hidden; z-index: 20; }
     .feature-modal:target { opacity: 1; pointer-events: auto; visibility: visible; }
+    .feature-modal.modal-closed { opacity: 0; pointer-events: none; visibility: hidden; }
     .feature-dialog { background: var(--paper); box-shadow: 0 24px 80px rgba(0, 0, 0, .35); display: grid; grid-template-columns: minmax(260px, .9fr) 1.1fr; max-height: min(760px, calc(100vh - 40px)); max-width: 900px; overflow: auto; position: relative; width: 100%; }
     .feature-dialog img { height: 100%; min-height: 320px; object-fit: cover; width: 100%; }
     .feature-copy { padding: 42px 42px 38px; }
@@ -489,9 +493,9 @@
 
     <section class="details" aria-label="Informazioni pratiche">
       <div class="container details-grid">
-        <div class="detail"><strong>Valdaora di Mezzo</strong><span>Nel cuore della Val Pusteria</span></div>
-        <div class="detail"><strong>Ospitalità senza formalità</strong><span>La tua lingua, il tuo ritmo</span></div>
-        <div class="detail"><strong>Montagna a portata di mano</strong><span>Sentieri, sapori e panorami</span></div>
+        <div class="detail"><strong>Valdaora di Mezzo</strong><span>Noi non sappiamo dov'è, cercala su Google Maps</span></div>
+        <div class="detail"><strong>Ospitalità senza formalità</strong><span>Come se fossi a casa, ma pagando</span></div>
+        <div class="detail"><strong>Montagna a portata di mano</strong><span>Sentieri, animali selvatici e frane per un'esperienza da brividi</span></div>
       </div>
     </section>
 
@@ -511,5 +515,52 @@
       <p>Valdaora di Mezzo · Val Pusteria · <a href="#top">Torna su ↑</a></p>
     </div>
   </footer>
+  <script>
+    var featureModals = document.querySelectorAll('.feature-modal');
+
+    function resetClosedModals() {
+      var modalId = window.location.hash.slice(1);
+      featureModals.forEach(function (modal) {
+        if (modal.id === modalId) {
+          modal.classList.remove('modal-closed');
+          modal.setAttribute('aria-hidden', 'false');
+        }
+      });
+    }
+
+    document.querySelectorAll('.card-trigger').forEach(function (trigger) {
+      trigger.addEventListener('click', function () {
+        var modal = document.getElementById(trigger.getAttribute('href').slice(1));
+        if (modal) {
+          modal.classList.remove('modal-closed');
+          modal.setAttribute('aria-hidden', 'false');
+        }
+      });
+    });
+
+    document.querySelectorAll('.feature-close').forEach(function (closeButton) {
+      closeButton.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        var modal = closeButton.closest('.feature-modal');
+        var modalId = window.location.hash.slice(1);
+        var trigger = document.querySelector('.card-trigger[href="#' + modalId + '"]');
+
+        if (modal) {
+          modal.classList.add('modal-closed');
+          modal.setAttribute('aria-hidden', 'true');
+        }
+
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+
+        if (trigger) {
+          trigger.focus({ preventScroll: true });
+        }
+      });
+    });
+
+    window.addEventListener('hashchange', resetClosedModals);
+    resetClosedModals();
+  </script>
 </body>
 </html>
